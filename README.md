@@ -1,5 +1,5 @@
-# Percona Node Exporter
-
+# Percona Node Exporter [![Build Status](https://travis-ci.org/sunline-oss/node_exporter.svg?branch=master)](https://travis-ci.org/sunline-oss/node_exporter)
+  
 Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels, written
 in Go with pluggable metric collectors.
 
