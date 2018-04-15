@@ -1,0 +1,31 @@
+sudo: false
+
+language: go
+
+go:
+  #- 1.8
+  - 1.9.x
+  #- 1.10.x
+  #- tip
+
+go_import_path: github.com/prometheus/node_exporter
+
+script:
+  - make
+  - make test
+  - make tarball
+
+deploy:
+  provider: releases
+  api_key:
+    secure: P279k6+rcKYu3ygrAtBqF7uEdyM39JqsgbXLn0vgoyKpDUje81UDdKikZ+8b3LCM/mmEv+BB5PU+7tvTOcEIP57yYLcUhJQtPjwmj/VbIXUiuzzS5SDkqDYfdR/5a58JGrD7xNJfioLqh8UeLsMEBv4oKWl8B4pihGPZ4wJxgEeP5bC1OoBL0Bx3nHFDtCraVxi9LiNU4fYvakqTMFmK6LneeN2d8JWOL6raO0FqoibwY47qpu3GKF3dLlV9wiPfMiSGG2IAU9jw6rq3dakaTQO28colh7ta6/Kz/CHZMWhlBae4AauirzBvC/m14LpwqWVaVZFrHcaA+LNwlpXpLAUGt37pWj9nUm05tnmRSX1KW8nANtAkPmmRw1tDi7qgtwu7aypYT2zVaFQ/VVqjrxmCH/+qpSuUETjhQJyYv7Ut0vszVZ+C0KZpxbxZYT6TogjsbZSlpGtfhRQoUXVcLzzZQEZP1/dh4xJca1VAgDWxb2KPm6eiC0+gvghNj9iWJ9qi9HVhpYtXmQX8dT8MI1Qo/VsJ0JcQ66DYcwEUqGv5bLX5EyEGBGu8bCjgNuQ0JMyS9Zo9Upr4P7MLZxq9sz9J0c9315eJFUsWBneRR2y8mwKCTZo9QYjWYvIW7mMguj5ZVmOlTMrgLp5Bfb7SO10myThNnB02d9l1Z4hz5rk=
+  file_glob: true
+  file: node_exporter*.tar.gz
+  skip_cleanup: true
+  overwrite: true
+  on:
+    tags: true
+
+notifications:
+  webhooks: https://hook.bearychat.com/=bwA8s/travis/86c26c0c77edfb9fddf59e71b315625f
+
